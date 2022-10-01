@@ -11,9 +11,6 @@
 // Triangle constructor
 PascalsTriangle::PascalsTriangle(int triangleSize) {
   this->InitRows(triangleSize);
-  // for (long long num : row)
-  //   std::cout << num << " ";
-  // std::cout << std::endl;
 }
 
 // Access the element on the n row, k column

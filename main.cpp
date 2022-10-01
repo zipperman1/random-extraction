@@ -61,11 +61,6 @@ int main() {
     blockInfo = NextBlockInfo(inputSequence, BLOCK_SIZE, triangle, event);
     Extraction(blockInfo, BLOCK_SIZE, triangle);
   }
-
-  // while (!inputSequence.eof()) {
-  //   blockNums.push_back(NextBlockInfo(inputSequence, BLOCK_SIZE, triangle, event));
-  // }
-
-  // std::cout << blockNums[0].blockNum << std::endl;
+  
   return 0;
 }

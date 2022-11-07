@@ -47,20 +47,25 @@ void Extraction(BlockInfo blockInfo, int blockSize, PascalsTriangle &triangle) {
 
   for (bool item : binaryForm)
     std::cout << item;
-  std::cout << std::endl;
 }
 
 int main() {
   const int BLOCK_SIZE = 64;
   std::ifstream inputSequence("input.txt");
   BlockInfo blockInfo;
-  char event = '1';
+
+  // The alphabet is defined on the first line of the "input.txt" file
+  std::string alphabet;
+  std::getline(inputSequence, alphabet);
 
   PascalsTriangle triangle(BLOCK_SIZE);
-  while (inputSequence.peek() != EOF) {
-    blockInfo = NextBlockInfo(inputSequence, BLOCK_SIZE, triangle, event);
-    Extraction(blockInfo, BLOCK_SIZE, triangle);
+  std::cout << inputSequence.peek() << std::endl;
+  for (char event : alphabet) {
+    while (inputSequence.peek() != EOF) {
+      blockInfo = NextBlockInfo(inputSequence, BLOCK_SIZE, triangle, event);
+      Extraction(blockInfo, BLOCK_SIZE, triangle);
+    }
+    std::cout << std::endl;
   }
-  
   return 0;
 }

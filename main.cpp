@@ -44,14 +44,15 @@ void Extraction(BlockInfo blockInfo, int blockSize, PascalsTriangle &triangle) {
     if ((R_n & 1) != 0)
       numLimit += r;
   }
-
+  //Reversing the binary form of the exctracted Num() 
   for (bool item : binaryForm)
     std::cout << item;
 }
 
 int main() {
-  const int BLOCK_SIZE = 64;
-  std::ifstream inputSequence("input.txt");
+  const int BLOCK_SIZE = 8;
+  std::ifstream inputSequence("input1.txt");
+  int cPos = 0;
   BlockInfo blockInfo;
 
   // The alphabet is defined on the first line of the "input.txt" file
@@ -59,9 +60,13 @@ int main() {
   std::getline(inputSequence, alphabet);
 
   PascalsTriangle triangle(BLOCK_SIZE);
-  std::cout << inputSequence.peek() << std::endl;
-  for (char event : alphabet) {
-    while (inputSequence.peek() != EOF) {
+  while (inputSequence.peek() != EOF) {
+    cPos = inputSequence.tellg();
+    //We iterate through all the letters except the last one
+    for (int i = 0; i < alphabet.length() - 1; i++) {
+      char event = alphabet[i];
+
+      inputSequence.seekg(cPos, inputSequence.beg);
       blockInfo = NextBlockInfo(inputSequence, BLOCK_SIZE, triangle, event);
       Extraction(blockInfo, BLOCK_SIZE, triangle);
     }
